@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Planify – مُخطِّطك الذكي</title>
 
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="manifest" href="site.webmanifest" />
+
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 
@@ -18,283 +25,271 @@
   </head>
 
   <body>
-    <!-- ============================================================
-     ONBOARDING SCREEN — Name entry
-    ============================================================ -->
+    <!-- ═══════════════════════════════════════════════════
+     ONBOARDING
+═══════════════════════════════════════════════════ -->
     <div id="onboarding">
-      <div class="onboard-card">
-        <!-- Animated logo -->
-        <div class="float-anim" style="font-size: 64px; margin-bottom: 8px">
-          🗓️
+      <div class="ob-card">
+        <span class="ob-emoji">🌟</span>
+        <div class="title-xl" style="color: var(--txt); margin-bottom: 8px">
+          يومك يستاهل ينظَّم ✨
         </div>
-        <h1
-          style="
-            font-size: 28px;
-            font-weight: 800;
-            color: var(--text);
-            margin-bottom: 6px;
-          "
-        >
-          مرحباً بك في Planify
-        </h1>
-        <p
-          style="color: var(--text-muted); font-size: 14px; margin-bottom: 32px"
-        >
-          مُخطِّطك الذكي للاجتماعات والمهام اليومية
-        </p>
-
-        <label
-          style="
-            display: block;
-            text-align: right;
-            font-size: 15px;
-            color: var(--text-muted);
-            margin-bottom: 8px;
-          "
-          >ما اسمك؟</label
-        >
-        <input
-          id="nameInput"
-          class="input"
-          placeholder="اكتب اسمك هنا..."
-          style="margin-bottom: 20px; font-size: 16px; text-align: center"
-          maxlength="30"
-        />
-
+        <div style="font-size: 14px; color: var(--txt2); margin-bottom: 0">
+          مُخطِّطك الذكي للاجتماعات والمهام — كل حاجة في مكان واحد
+        </div>
+        <div class="ob-dots">
+          <span class="ob-dot"></span><span class="ob-dot"></span
+          ><span class="ob-dot"></span>
+        </div>
+        <div class="field" style="margin-bottom: 16px; text-align: right">
+          <label class="field-label" style="text-align: right"
+            >أولاً، ما اسمك؟ 👋</label
+          >
+          <input
+            id="nameInput"
+            class="input"
+            placeholder="اكتب اسمك هنا..."
+            style="text-align: center; font-size: 16px"
+            maxlength="30"
+          />
+        </div>
         <button
-          class="btn-primary"
+          class="btn btn-primary"
+          onclick="submitName()"
           style="
             width: 100%;
             justify-content: center;
-            font-size: 16px;
-            padding: 14px;
+            font-size: 15px;
+            padding: 13px 20px;
           "
-          onclick="submitName()"
         >
-          <span>ابدأ الآن</span>
-          <i data-lucide="arrow-left" style="width: 18px; height: 18px"></i>
+          <i data-lucide="sparkles" style="width: 17px; height: 17px"></i>
+          هيا نبدأ!
         </button>
-
-        <p style="margin-top: 16px; font-size: 11px; color: var(--text-muted)">
-          بياناتك محفوظة محلياً على جهازك فقط 🔒
-        </p>
+        <div style="margin-top: 14px; font-size: 11.5px; color: var(--txt3)">
+          🔒 بياناتك محفوظة على جهازك فقط — لا ترفع لأي سيرفر
+        </div>
       </div>
     </div>
 
-    <!-- ============================================================
+    <!-- ═══════════════════════════════════════════════════
      MAIN APP
-    ============================================================ -->
+═══════════════════════════════════════════════════ -->
     <div id="app">
-      <!-- ---- MAIN CONTENT ---- -->
-      <div class="main-shell">
-        <!-- Content -->
-        <main class="content-area">
-          <div class="center-hero">
-            <div class="hero-title">
-              أهلاً <span class="hero-name" id="heroName"></span>
-              <span class="hero-emoji">🐣</span>
+      <!-- Header -->
+      <header class="app-header">
+        <div class="header-logo">
+          <div class="header-logo-icon">🗓️</div>
+          <div>
+            <div class="header-name" id="headerName">مُخطِّطي</div>
+            <div class="header-sub" id="headerDate"></div>
+          </div>
+        </div>
+        <div class="header-actions">
+          <button
+            class="header-action-btn"
+            data-tip="دليل الاستخدام"
+            onclick="openGuide()"
+          >
+            <i data-lucide="book-open" style="width: 17px; height: 17px"></i>
+          </button>
+          <button
+            class="header-action-btn"
+            data-tip="الإشعارات"
+            onclick="showSection('notifications')"
+            id="headerBell"
+          >
+            <i data-lucide="bell" style="width: 17px; height: 17px"></i>
+            <span class="notif-dot" id="notifDot"></span>
+          </button>
+          <button
+            class="header-action-btn"
+            data-tip="تبديل الوضع"
+            onclick="toggleTheme()"
+            id="themeBtn"
+          >
+            <i data-lucide="moon" style="width: 17px; height: 17px"></i>
+          </button>
+          <button
+            class="header-action-btn"
+            data-tip="الإعدادات"
+            onclick="openSettings()"
+          >
+            <i data-lucide="settings" style="width: 17px; height: 17px"></i>
+          </button>
+        </div>
+      </header>
+
+      <!-- Body -->
+      <div class="app-body">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+          <div class="sidebar-section-label">القائمة</div>
+          <button
+            class="nav-item active"
+            id="nav-dashboard"
+            onclick="showSection('dashboard')"
+          >
+            <i
+              data-lucide="layout-dashboard"
+              style="width: 17px; height: 17px"
+            ></i
+            >لوحة التحكم
+          </button>
+          <button
+            class="nav-item"
+            id="nav-meetings"
+            onclick="showSection('meetings')"
+          >
+            <i data-lucide="calendar" style="width: 17px; height: 17px"></i
+            >الاجتماعات
+          </button>
+          <button
+            class="nav-item"
+            id="nav-todos"
+            onclick="showSection('todos')"
+          >
+            <i data-lucide="check-square" style="width: 17px; height: 17px"></i
+            >المهام
+          </button>
+          <button
+            class="nav-item"
+            id="nav-notifications"
+            onclick="showSection('notifications')"
+          >
+            <i data-lucide="bell" style="width: 17px; height: 17px"></i
+            >الإشعارات
+            <span class="nav-badge" id="navNotifBadge" style="display: none"
+              >0</span
+            >
+          </button>
+
+          <div style="flex: 1"></div>
+          <div class="sidebar-tip">
+            <div
+              style="
+                font-size: 11px;
+                font-weight: 800;
+                color: var(--a);
+                margin-bottom: 4px;
+              "
+            >
+              💡 تلميح
             </div>
-            <div class="hero-sub" id="heroSub">مخططك الذكي لليوم</div>
-            <div class="hero-actions">
-              <button
-                class="btn-icon"
-                data-tip="سجل الإشعارات"
-                onclick="showSection('notifications')"
-                style="position: relative"
-              >
-                <i data-lucide="bell" style="width: 20px; height: 20px"></i>
-                <span
-                  id="notifBadge"
-                  style="
-                    display: none;
-                    position: absolute;
-                    top: 4px;
-                    right: 4px;
-                    width: 8px;
-                    height: 8px;
-                    border-radius: 50%;
-                    background: #ef4444;
-                  "
-                ></span>
-              </button>
-
-              <button
-                class="btn-icon"
-                data-tip="تبديل الشكل"
-                onclick="toggleTheme()"
-                id="themeBtn"
-              >
-                <i data-lucide="moon" style="width: 20px; height: 20px"></i>
-              </button>
-
-              <button
-                class="btn-icon"
-                data-tip="الإعدادات"
-                onclick="openSettings()"
-              >
-                <i data-lucide="settings" style="width: 20px; height: 20px"></i>
-              </button>
+            <div
+              style="font-size: 11.5px; color: var(--txt2); line-height: 1.5"
+              id="dailyTip"
+            >
+              فعّل الإشعارات لتلقّي تنبيه قبل اجتماعك بـ30 دقيقة!
             </div>
           </div>
+        </aside>
 
-          <!-- =================== DASHBOARD =================== -->
+        <!-- Content -->
+        <main class="content">
+          <!-- ═══ DASHBOARD ═══ -->
           <section id="section-dashboard">
-            <div
-              style="
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                margin-bottom: 24px;
-              "
-            >
-              <div>
-                <div class="section-title" id="dashGreet">صباح النور 👋</div>
-                <div class="section-sub">إليك ملخص يومك</div>
+            <div class="center-hero">
+              <div class="hero-name-row">
+                <span class="hero-emoji-float">🐣</span>
+                أهلاً، <span class="hero-accent" id="heroName">—</span>
+                <span class="hero-emoji-float">🐣</span>
               </div>
-              <div
-                style="font-size: 15px; color: var(--text-muted)"
-                id="currentDateTime"
-              ></div>
+              <div class="hero-sub" id="heroSub">مخططك الذكي لليوم</div>
+              <div class="hero-toolbar">
+                <button
+                  class="btn-icon"
+                  data-tip="الإشعارات"
+                  onclick="showSection('notifications')"
+                  style="position: relative"
+                >
+                  <i data-lucide="bell" style="width: 18px; height: 18px"></i>
+                  <span class="notif-dot" id="notifDot2"></span>
+                </button>
+                <div
+                  style="width: 1px; height: 20px; background: var(--bd)"
+                ></div>
+                <button
+                  class="btn-icon"
+                  data-tip="تبديل الوضع"
+                  onclick="toggleTheme()"
+                  id="themeBtn2"
+                >
+                  <i data-lucide="moon" style="width: 18px; height: 18px"></i>
+                </button>
+                <button
+                  class="btn-icon"
+                  data-tip="الإعدادات"
+                  onclick="openSettings()"
+                >
+                  <i
+                    data-lucide="settings"
+                    style="width: 18px; height: 18px"
+                  ></i>
+                </button>
+              </div>
             </div>
 
-            <!-- Stats row -->
-            <div
-              style="
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-                gap: 14px;
-                margin-bottom: 28px;
-              "
-            >
-              <div class="card stat-card" style="padding: 20px">
+            <!-- Stats -->
+            <div class="stat-grid">
+              <div class="stat-card">
                 <i
                   data-lucide="calendar"
                   class="stat-icon"
-                  style="color: var(--accent)"
+                  style="width: 20px; height: 20px"
                 ></i>
-                <div
-                  style="
-                    font-size: 28px;
-                    font-weight: 800;
-                    color: var(--accent);
-                  "
-                  id="statMeetings"
-                >
-                  0
-                </div>
-                <div
-                  style="
-                    font-size: 15px;
-                    color: var(--text-muted);
-                    margin-top: 4px;
-                  "
-                >
-                  اجتماع اليوم
-                </div>
+                <div class="stat-num" id="statMeetings">0</div>
+                <div class="stat-lbl">اجتماع اليوم</div>
               </div>
-              <div class="card stat-card" style="padding: 20px">
+              <div class="stat-card">
                 <i
-                  data-lucide="check-square"
+                  data-lucide="circle-dot"
                   class="stat-icon"
-                  style="color: var(--accent)"
+                  style="width: 20px; height: 20px"
                 ></i>
-                <div
-                  style="
-                    font-size: 28px;
-                    font-weight: 800;
-                    color: var(--accent);
-                  "
-                  id="statTodos"
-                >
-                  0
-                </div>
-                <div
-                  style="
-                    font-size: 15px;
-                    color: var(--text-muted);
-                    margin-top: 4px;
-                  "
-                >
-                  مهام معلقة
-                </div>
+                <div class="stat-num" id="statTodos">0</div>
+                <div class="stat-lbl">مهام معلقة</div>
               </div>
-              <div class="card stat-card" style="padding: 20px">
+              <div class="stat-card">
                 <i
-                  data-lucide="check-circle"
+                  data-lucide="check-circle-2"
                   class="stat-icon"
-                  style="color: var(--accent)"
+                  style="width: 20px; height: 20px"
                 ></i>
-                <div
-                  style="
-                    font-size: 28px;
-                    font-weight: 800;
-                    color: var(--accent);
-                  "
-                  id="statDone"
-                >
-                  0
-                </div>
-                <div
-                  style="
-                    font-size: 15px;
-                    color: var(--text-muted);
-                    margin-top: 4px;
-                  "
-                >
-                  مهام منجزة
-                </div>
+                <div class="stat-num" id="statDone">0</div>
+                <div class="stat-lbl">منجزة ✅</div>
               </div>
-              <div class="card stat-card" style="padding: 20px">
+              <div class="stat-card">
                 <i
                   data-lucide="bell"
                   class="stat-icon"
-                  style="color: var(--accent)"
+                  style="width: 20px; height: 20px"
                 ></i>
-                <div
-                  style="
-                    font-size: 28px;
-                    font-weight: 800;
-                    color: var(--accent);
-                  "
-                  id="statNotifs"
-                >
-                  0
-                </div>
-                <div
-                  style="
-                    font-size: 15px;
-                    color: var(--text-muted);
-                    margin-top: 4px;
-                  "
-                >
-                  إشعارات
-                </div>
+                <div class="stat-num" id="statNotifs">0</div>
+                <div class="stat-lbl">إشعارات</div>
               </div>
             </div>
 
             <!-- Progress -->
-            <div class="card" style="padding: 20px; margin-bottom: 20px">
+            <div class="glass" style="padding: 18px 20px; margin-bottom: 22px">
               <div
                 style="
                   display: flex;
                   justify-content: space-between;
+                  align-items: center;
                   margin-bottom: 10px;
                 "
               >
-                <span style="font-size: 14px; font-weight: 700"
+                <span style="font-size: 13.5px; font-weight: 700"
                   >إنجاز المهام اليوم</span
                 >
                 <span
                   id="progressPct"
-                  style="
-                    font-size: 14px;
-                    font-weight: 800;
-                    color: var(--accent);
-                  "
+                  style="font-size: 14px; font-weight: 900; color: var(--a)"
                   >0%</span
                 >
               </div>
-              <div class="progress-bar">
+              <div class="progress-track">
                 <div
                   class="progress-fill"
                   id="progressFill"
@@ -303,44 +298,92 @@
               </div>
             </div>
 
-            <!-- Upcoming meetings -->
-            <div style="font-size: 16px; font-weight: 800; margin-bottom: 12px">
-              اجتماعاتك القادمة 📅
+            <!-- Today's clock -->
+            <div
+              class="glass"
+              style="
+                padding: 14px 20px;
+                margin-bottom: 22px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+              "
+            >
+              <span style="font-size: 13px; color: var(--txt2)"
+                >التاريخ والوقت الآن</span
+              >
+              <span
+                id="currentDateTime"
+                style="font-size: 13px; color: var(--a); font-weight: 600"
+              ></span>
             </div>
-            <div id="dashMeetings"></div>
-          </section>
 
-          <!-- =================== MEETINGS =================== -->
-          <section id="section-meetings" style="display: none">
+            <!-- Upcoming meetings -->
             <div
               style="
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                margin-bottom: 24px;
-                flex-wrap: wrap;
-                gap: 12px;
+                margin-bottom: 12px;
               "
             >
+              <div style="font-size: 15px; font-weight: 800">
+                ⚡ الاجتماعات القادمة
+              </div>
+              <button
+                class="btn btn-ghost"
+                style="font-size: 12px; padding: 6px 12px"
+                onclick="showSection('meetings')"
+              >
+                عرض الكل
+                <i
+                  data-lucide="chevron-left"
+                  style="width: 14px; height: 14px"
+                ></i>
+              </button>
+            </div>
+            <div id="dashMeetings"></div>
+
+            <!-- High priority todos -->
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin: 20px 0 12px;
+              "
+            >
+              <div style="font-size: 15px; font-weight: 800">
+                🔴 مهام عالية الأولوية
+              </div>
+              <button
+                class="btn btn-ghost"
+                style="font-size: 12px; padding: 6px 12px"
+                onclick="showSection('todos')"
+              >
+                عرض الكل
+                <i
+                  data-lucide="chevron-left"
+                  style="width: 14px; height: 14px"
+                ></i>
+              </button>
+            </div>
+            <div id="dashTodos"></div>
+          </section>
+
+          <!-- ═══ MEETINGS ═══ -->
+          <section id="section-meetings" style="display: none">
+            <div class="section-head">
               <div>
                 <div class="section-title">الاجتماعات 📅</div>
                 <div class="section-sub">سجّل وتابع كل اجتماعاتك</div>
               </div>
-              <button class="btn-primary" onclick="openMeetingModal()">
-                <i data-lucide="plus" style="width: 16px; height: 16px"></i>
-                اجتماع جديد
+              <button class="btn btn-primary" onclick="openMeetingModal()">
+                <i data-lucide="plus" style="width: 16px; height: 16px"></i
+                >اجتماع جديد
               </button>
             </div>
-
-            <!-- Filter tabs -->
-            <div
-              style="
-                display: flex;
-                gap: 8px;
-                margin-bottom: 20px;
-                flex-wrap: wrap;
-              "
-            >
+            <div class="tab-row" style="margin-bottom: 18px">
               <button
                 class="tab-btn active"
                 onclick="filterMeetings('all', this)"
@@ -360,41 +403,22 @@
                 المنتهية
               </button>
             </div>
-
             <div id="meetingsList"></div>
           </section>
 
-          <!-- =================== TODOS =================== -->
+          <!-- ═══ TODOS ═══ -->
           <section id="section-todos" style="display: none">
-            <div
-              style="
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                margin-bottom: 24px;
-                flex-wrap: wrap;
-                gap: 12px;
-              "
-            >
+            <div class="section-head">
               <div>
-                <div class="section-title">قائمة المهام ✅</div>
+                <div class="section-title">المهام ✅</div>
                 <div class="section-sub">مهامك اليومية في مكان واحد</div>
               </div>
-              <button class="btn-primary" onclick="openTodoModal()">
-                <i data-lucide="plus" style="width: 16px; height: 16px"></i>
-                مهمة جديدة
+              <button class="btn btn-primary" onclick="openTodoModal()">
+                <i data-lucide="plus" style="width: 16px; height: 16px"></i>مهمة
+                جديدة
               </button>
             </div>
-
-            <!-- Filter -->
-            <div
-              style="
-                display: flex;
-                gap: 8px;
-                margin-bottom: 20px;
-                flex-wrap: wrap;
-              "
-            >
+            <div class="tab-row" style="margin-bottom: 18px">
               <button class="tab-btn active" onclick="filterTodos('all', this)">
                 الكل
               </button>
@@ -408,43 +432,51 @@
                 عالية الأولوية
               </button>
             </div>
-
             <div id="todosList"></div>
           </section>
 
-          <!-- =================== NOTIFICATIONS =================== -->
+          <!-- ═══ NOTIFICATIONS ═══ -->
           <section id="section-notifications" style="display: none">
-            <div
-              style="
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                margin-bottom: 24px;
-                flex-wrap: wrap;
-                gap: 12px;
-              "
-            >
+            <div class="section-head">
               <div>
                 <div class="section-title">الإشعارات 🔔</div>
-                <div class="section-sub">كل التنبيهات التي وصلتك</div>
+                <div class="section-sub">سجل كامل بكل التنبيهات التي وصلتك</div>
               </div>
-              <button class="btn-ghost" onclick="clearAllNotifs()">
-                <i data-lucide="trash-2" style="width: 15px; height: 15px"></i>
-                مسح الكل
+              <button
+                class="btn btn-ghost"
+                onclick="clearAllNotifs()"
+                style="color: #ef4444; border-color: rgba(239, 68, 68, 0.2)"
+              >
+                <i data-lucide="trash-2" style="width: 14px; height: 14px"></i
+                >مسح الكل
               </button>
             </div>
             <div id="notifList"></div>
           </section>
+
+          <!-- Copyright -->
+          <p class="copyright">
+            Developed by
+            <a
+              href="https://www.linkedin.com/in/mazen-mohamed-5b0716247/"
+              target="_blank"
+              style="color: var(--txt3); text-decoration: underline"
+            >
+              Mazen Mohamed
+            </a>
+            — <span id="current-year"></span>
+          </p>
         </main>
       </div>
+      <!-- /app-body -->
 
-      <!-- Bottom dock navigation -->
-      <nav class="dock-nav" aria-label="التنقل">
+      <!-- Bottom dock (mobile) -->
+      <nav class="dock" aria-label="التنقل">
         <button
-          class="dock-item active"
+          class="dock-btn active"
           id="dock-dashboard"
           onclick="showSection('dashboard')"
-          data-tip="لوحة التحكم"
+          data-tip="الرئيسية"
         >
           <i
             data-lucide="layout-dashboard"
@@ -453,7 +485,7 @@
           <span>الرئيسية</span>
         </button>
         <button
-          class="dock-item"
+          class="dock-btn"
           id="dock-meetings"
           onclick="showSection('meetings')"
           data-tip="الاجتماعات"
@@ -462,157 +494,87 @@
           <span>اجتماعات</span>
         </button>
         <button
-          class="dock-item"
+          class="dock-btn"
           id="dock-todos"
           onclick="showSection('todos')"
-          data-tip="قائمة المهام"
+          data-tip="المهام"
         >
           <i data-lucide="check-square" style="width: 20px; height: 20px"></i>
           <span>مهام</span>
         </button>
         <button
-          class="dock-item"
+          class="dock-btn"
           id="dock-notifications"
           onclick="showSection('notifications')"
           data-tip="الإشعارات"
         >
           <i data-lucide="bell" style="width: 20px; height: 20px"></i>
           <span>تنبيهات</span>
-          <span id="notifCount" class="dock-badge" style="display: none"
-            >0</span
-          >
+          <span class="dock-notif-dot" id="dockNotifBadge">0</span>
         </button>
       </nav>
     </div>
+    <!-- /app -->
 
-    <!-- ============================================================
+    <!-- ═══════════════════════════════════════════════════
      MODALS
-============================================================ -->
+═══════════════════════════════════════════════════ -->
 
     <!-- Meeting Modal -->
     <div
       id="meetingModal"
-      class="modal-overlay"
+      class="overlay"
       style="display: none"
       onclick="closeOnOverlay(event, 'meetingModal')"
     >
-      <div class="modal-box" onclick="event.stopPropagation()">
-        <div
-          style="
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 24px;
-          "
-        >
-          <h2 style="font-size: 20px; font-weight: 800" id="meetingModalTitle">
-            اجتماع جديد
-          </h2>
+      <div class="modal" onclick="event.stopPropagation()">
+        <div class="modal-header">
+          <div class="modal-title" id="meetingModalTitle">📅 اجتماع جديد</div>
           <button class="btn-icon" onclick="closeModal('meetingModal')">
-            <i data-lucide="x" style="width: 20px; height: 20px"></i>
+            <i data-lucide="x" style="width: 18px; height: 18px"></i>
           </button>
         </div>
-
         <input type="hidden" id="editingMeetingId" />
-
-        <div style="display: flex; flex-direction: column; gap: 16px">
-          <div>
-            <label
-              style="
-                display: block;
-                font-size: 15px;
-                font-weight: 700;
-                color: var(--text-muted);
-                margin-bottom: 6px;
-              "
-              >عنوان الاجتماع *</label
-            >
+        <div style="display: flex; flex-direction: column; gap: 14px">
+          <div class="field">
+            <label class="field-label">عنوان الاجتماع *</label>
             <input
               class="input"
               id="meetTitle"
               placeholder="مثال: اجتماع الفريق الأسبوعي"
             />
           </div>
-          <div>
-            <label
-              style="
-                display: block;
-                font-size: 15px;
-                font-weight: 700;
-                color: var(--text-muted);
-                margin-bottom: 6px;
-              "
-              >التفاصيل</label
-            >
+          <div class="field">
+            <label class="field-label">التفاصيل / جدول الأعمال</label>
             <textarea
               class="input"
               id="meetDesc"
               rows="2"
-              placeholder="وصف الاجتماع، جدول الأعمال..."
+              placeholder="وصف الاجتماع أو جدول الأعمال..."
             ></textarea>
           </div>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px">
-            <div>
-              <label
-                style="
-                  display: block;
-                  font-size: 15px;
-                  font-weight: 700;
-                  color: var(--text-muted);
-                  margin-bottom: 6px;
-                "
-                >التاريخ *</label
-              >
-              <input class="input" id="meetDate" type="date" />
+          <div class="field-row">
+            <div class="field">
+              <label class="field-label">التاريخ *</label
+              ><input class="input" id="meetDate" type="date" />
             </div>
-            <div>
-              <label
-                style="
-                  display: block;
-                  font-size: 15px;
-                  font-weight: 700;
-                  color: var(--text-muted);
-                  margin-bottom: 6px;
-                "
-                >الوقت *</label
-              >
-              <input class="input" id="meetTime" type="time" />
+            <div class="field">
+              <label class="field-label">الوقت *</label
+              ><input class="input" id="meetTime" type="time" />
             </div>
           </div>
-          <div>
-            <label
-              style="
-                display: block;
-                font-size: 15px;
-                font-weight: 700;
-                color: var(--text-muted);
-                margin-bottom: 6px;
-              "
-              >المكان / الرابط</label
-            >
+          <div class="field">
+            <label class="field-label">المكان / الرابط</label>
             <input
               class="input"
               id="meetLocation"
               placeholder="Zoom / Google Meet / القاعة أ"
             />
           </div>
-          <div
-            style="
-              display: flex;
-              align-items: center;
-              justify-content: space-between;
-              background: var(--surface2);
-              border-radius: 10px;
-              padding: 12px 14px;
-            "
-          >
-            <div>
-              <div style="font-size: 14px; font-weight: 700">
-                تفعيل الإشعارات
-              </div>
-              <div style="font-size: 12px; color: var(--text-muted)">
-                تنبيه قبل 30 دقيقة و 5 دقائق
-              </div>
+          <div class="toggle-row">
+            <div class="toggle-row-text">
+              <div class="t-row-title">تفعيل الإشعارات</div>
+              <div class="t-row-sub">تنبيه قبل 30 دقيقة و 5 دقائق</div>
             </div>
             <button
               class="toggle on"
@@ -621,21 +583,12 @@
             ></button>
           </div>
         </div>
-
-        <div
-          style="
-            display: flex;
-            gap: 10px;
-            margin-top: 24px;
-            justify-content: flex-end;
-          "
-        >
-          <button class="btn-ghost" onclick="closeModal('meetingModal')">
+        <div class="modal-footer">
+          <button class="btn btn-ghost" onclick="closeModal('meetingModal')">
             إلغاء
           </button>
-          <button class="btn-primary" onclick="saveMeeting()">
-            <i data-lucide="save" style="width: 15px; height: 15px"></i>
-            حفظ
+          <button class="btn btn-primary" onclick="saveMeeting()">
+            <i data-lucide="save" style="width: 15px; height: 15px"></i>حفظ
           </button>
         </div>
       </div>
@@ -644,114 +597,54 @@
     <!-- Todo Modal -->
     <div
       id="todoModal"
-      class="modal-overlay"
+      class="overlay"
       style="display: none"
       onclick="closeOnOverlay(event, 'todoModal')"
     >
-      <div class="modal-box" onclick="event.stopPropagation()">
-        <div
-          style="
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 24px;
-          "
-        >
-          <h2 style="font-size: 20px; font-weight: 800" id="todoModalTitle">
-            مهمة جديدة
-          </h2>
+      <div class="modal" onclick="event.stopPropagation()">
+        <div class="modal-header">
+          <div class="modal-title" id="todoModalTitle">✅ مهمة جديدة</div>
           <button class="btn-icon" onclick="closeModal('todoModal')">
-            <i data-lucide="x" style="width: 20px; height: 20px"></i>
+            <i data-lucide="x" style="width: 18px; height: 18px"></i>
           </button>
         </div>
-
         <input type="hidden" id="editingTodoId" />
-
-        <div style="display: flex; flex-direction: column; gap: 16px">
-          <div>
-            <label
-              style="
-                display: block;
-                font-size: 15px;
-                font-weight: 700;
-                color: var(--text-muted);
-                margin-bottom: 6px;
-              "
-              >عنوان المهمة *</label
-            >
+        <div style="display: flex; flex-direction: column; gap: 14px">
+          <div class="field">
+            <label class="field-label">عنوان المهمة *</label>
             <input
               class="input"
               id="todoTitle"
               placeholder="ماذا تريد أن تفعل؟"
             />
           </div>
-          <div>
-            <label
-              style="
-                display: block;
-                font-size: 15px;
-                font-weight: 700;
-                color: var(--text-muted);
-                margin-bottom: 6px;
-              "
-              >التفاصيل</label
-            >
+          <div class="field">
+            <label class="field-label">التفاصيل</label>
             <textarea
               class="input"
               id="todoDesc"
-              placeholder="تفاصيل إضافية..."
               rows="2"
+              placeholder="تفاصيل إضافية..."
             ></textarea>
           </div>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px">
-            <div>
-              <label
-                style="
-                  display: block;
-                  font-size: 15px;
-                  font-weight: 700;
-                  color: var(--text-muted);
-                  margin-bottom: 6px;
-                "
-                >الأولوية</label
-              >
+          <div class="field-row">
+            <div class="field">
+              <label class="field-label">الأولوية</label>
               <select class="input" id="todoPriority">
                 <option value="high">🔴 عالية</option>
                 <option value="medium" selected>🟡 متوسطة</option>
                 <option value="low">🟢 منخفضة</option>
               </select>
             </div>
-            <div>
-              <label
-                style="
-                  display: block;
-                  font-size: 15px;
-                  font-weight: 700;
-                  color: var(--text-muted);
-                  margin-bottom: 6px;
-                "
-                >تاريخ الاستحقاق</label
-              >
+            <div class="field">
+              <label class="field-label">تاريخ الاستحقاق</label>
               <input class="input" id="todoDue" type="date" />
             </div>
           </div>
-          <div
-            style="
-              display: flex;
-              align-items: center;
-              justify-content: space-between;
-              background: var(--surface2);
-              border-radius: 10px;
-              padding: 12px 14px;
-            "
-          >
-            <div>
-              <div style="font-size: 14px; font-weight: 700">
-                تنبيه عند الاستحقاق
-              </div>
-              <div style="font-size: 12px; color: var(--text-muted)">
-                إشعار عند حلول موعد المهمة
-              </div>
+          <div class="toggle-row">
+            <div class="toggle-row-text">
+              <div class="t-row-title">تنبيه عند الاستحقاق</div>
+              <div class="t-row-sub">إشعار عند حلول موعد المهمة</div>
             </div>
             <button
               class="toggle"
@@ -760,21 +653,12 @@
             ></button>
           </div>
         </div>
-
-        <div
-          style="
-            display: flex;
-            gap: 10px;
-            margin-top: 24px;
-            justify-content: flex-end;
-          "
-        >
-          <button class="btn-ghost" onclick="closeModal('todoModal')">
+        <div class="modal-footer">
+          <button class="btn btn-ghost" onclick="closeModal('todoModal')">
             إلغاء
           </button>
-          <button class="btn-primary" onclick="saveTodo()">
-            <i data-lucide="save" style="width: 15px; height: 15px"></i>
-            حفظ
+          <button class="btn btn-primary" onclick="saveTodo()">
+            <i data-lucide="save" style="width: 15px; height: 15px"></i>حفظ
           </button>
         </div>
       </div>
@@ -783,67 +667,41 @@
     <!-- Settings Modal -->
     <div
       id="settingsModal"
-      class="modal-overlay"
+      class="overlay"
       style="display: none"
       onclick="closeOnOverlay(event, 'settingsModal')"
     >
-      <div class="modal-box" onclick="event.stopPropagation()">
-        <div
-          style="
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 24px;
-          "
-        >
-          <h2 style="font-size: 20px; font-weight: 800">الإعدادات ⚙️</h2>
+      <div class="modal" onclick="event.stopPropagation()">
+        <div class="modal-header">
+          <div class="modal-title">⚙️ الإعدادات</div>
           <button class="btn-icon" onclick="closeModal('settingsModal')">
-            <i data-lucide="x" style="width: 20px; height: 20px"></i>
+            <i data-lucide="x" style="width: 18px; height: 18px"></i>
           </button>
         </div>
 
         <!-- Theme -->
-        <div style="margin-bottom: 24px">
-          <div style="font-size: 14px; font-weight: 700; margin-bottom: 12px">
-            🌓 وضع العرض
-          </div>
-          <div style="display: flex; gap: 10px">
-            <button
-              class="btn-ghost"
-              onclick="setTheme('light')"
-              id="btnLight"
-              style="flex: 1; justify-content: center"
-            >
-              <i data-lucide="sun" style="width: 16px; height: 16px"></i> فاتح
+        <div class="settings-section">
+          <div class="settings-section-title">🌓 وضع العرض</div>
+          <div class="theme-btns">
+            <button class="theme-btn" id="btnLight" onclick="setTheme('light')">
+              <i data-lucide="sun" style="width: 15px; height: 15px"></i>فاتح
             </button>
-            <button
-              class="btn-ghost"
-              onclick="setTheme('dark')"
-              id="btnDark"
-              style="flex: 1; justify-content: center"
-            >
-              <i data-lucide="moon" style="width: 16px; height: 16px"></i> داكن
+            <button class="theme-btn" id="btnDark" onclick="setTheme('dark')">
+              <i data-lucide="moon" style="width: 15px; height: 15px"></i>داكن
             </button>
-            <button
-              class="btn-ghost"
-              onclick="setTheme('auto')"
-              id="btnAuto"
-              style="flex: 1; justify-content: center"
-            >
-              <i data-lucide="monitor" style="width: 16px; height: 16px"></i>
-              تلقائي
+            <button class="theme-btn" id="btnAuto" onclick="setTheme('auto')">
+              <i data-lucide="monitor" style="width: 15px; height: 15px"></i
+              >تلقائي
             </button>
           </div>
         </div>
 
-        <!-- Accent colors -->
-        <div style="margin-bottom: 24px">
-          <div style="font-size: 14px; font-weight: 700; margin-bottom: 12px">
-            🎨 لون التمييز
-          </div>
-          <div style="display: flex; gap: 10px; flex-wrap: wrap">
+        <!-- Accent -->
+        <div class="settings-section">
+          <div class="settings-section-title">🎨 لون التمييز</div>
+          <div class="swatches">
             <div
-              class="swatch active"
+              class="swatch"
               style="background: #6366f1"
               data-accent="indigo"
               onclick="setAccent('indigo', this)"
@@ -890,10 +748,10 @@
         <!-- Notifications -->
         <div class="settings-section">
           <div class="settings-section-title">🔔 الإشعارات</div>
-          <div class="settings-row">
-            <div>
-              <div class="settings-row-title">إشعارات المتصفح</div>
-              <div class="settings-row-sub">السماح بإشعارات push</div>
+          <div class="toggle-row">
+            <div class="toggle-row-text">
+              <div class="t-row-title">إشعارات المتصفح</div>
+              <div class="t-row-sub">Push notifications في الخلفية</div>
             </div>
             <button
               class="toggle"
@@ -901,69 +759,194 @@
               onclick="toggleBrowserNotifs()"
             ></button>
           </div>
-          <div class="settings-row" style="margin-top: 10px">
-            <div>
-              <div class="settings-row-title">زر تجربة التنبيهات</div>
-              <div class="settings-row-sub">
-                إظهار زر لاختبار المودال والصوت
+          <div style="margin-top: 10px">
+            <div class="toggle-row">
+              <div class="toggle-row-text">
+                <div class="t-row-title">زر تجربة التنبيه</div>
+                <div class="t-row-sub">اختبر المودال والصوت</div>
               </div>
+              <button
+                class="toggle"
+                id="testNotifToggle"
+                onclick="toggleTestNotifButton()"
+              ></button>
             </div>
-            <button
-              class="toggle"
-              id="testNotifToggle"
-              onclick="toggleTestNotifButton()"
-            ></button>
-          </div>
-          <div
-            class="settings-row"
-            id="testNotifRow"
-            style="margin-top: 10px; display: none; justify-content: center"
-          >
-            <button class="btn-primary" onclick="testNotification()">
-              <i data-lucide="bell" style="width: 15px; height: 15px"></i>
-              تجربة التنبيه الآن
-            </button>
+            <div
+              id="testNotifRow"
+              style="margin-top: 10px; display: none; justify-content: center"
+            >
+              <button class="btn btn-primary" onclick="testNotification()">
+                <i data-lucide="bell" style="width: 15px; height: 15px"></i
+                >تجربة التنبيه الآن
+              </button>
+            </div>
           </div>
         </div>
 
-        <!-- Reset name -->
-        <div>
+        <!-- Account -->
+        <div class="settings-section">
           <div class="settings-section-title">👤 الحساب</div>
-          <button class="btn-ghost settings-danger" onclick="resetApp()">
-            <i data-lucide="rotate-ccw" style="width: 15px; height: 15px"></i>
-            إعادة ضبط التطبيق
+          <button
+            class="btn btn-danger"
+            onclick="resetApp()"
+            style="width: 100%; justify-content: center"
+          >
+            <i data-lucide="rotate-ccw" style="width: 14px; height: 14px"></i
+            >إعادة ضبط التطبيق
           </button>
         </div>
       </div>
     </div>
 
-    <!-- Persistent Notification Modal -->
+    <!-- Guide Modal -->
     <div
-      id="notifModal"
-      class="modal-overlay notif-alert-modal"
+      id="guideModal"
+      class="overlay"
       style="display: none"
+      onclick="closeOnOverlay(event, 'guideModal')"
     >
-      <div class="notif-alert-box" onclick="event.stopPropagation()">
-        <div class="notif-alert-icon" id="notifModalEmoji">🔔</div>
-        <h3 class="notif-alert-title" id="notifModalTitle">تنبيه</h3>
-        <p class="notif-alert-body" id="notifModalBody"></p>
-        <div class="notif-alert-actions">
-          <button class="btn-primary" onclick="closeNotifModal()">حسنا</button>
+      <div
+        class="modal"
+        onclick="event.stopPropagation()"
+        style="width: min(560px, 95vw)"
+      >
+        <div class="modal-header">
+          <div class="modal-title">📖 دليل الاستخدام</div>
+          <button class="btn-icon" onclick="closeModal('guideModal')">
+            <i data-lucide="x" style="width: 18px; height: 18px"></i>
+          </button>
+        </div>
+        <!-- Guide tabs -->
+        <div
+          style="
+            display: flex;
+            gap: 6px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+            margin-bottom: 18px;
+          "
+        >
           <button
-            class="btn-ghost"
+            class="tab-btn active"
+            id="gtab-0"
+            onclick="switchGuideTab(0)"
+            style="
+              border: 1px solid var(--bd);
+              border-radius: 10px;
+              flex: none;
+              padding: 7px 14px;
+            "
+          >
+            🏠 البداية
+          </button>
+          <button
+            class="tab-btn"
+            id="gtab-1"
+            onclick="switchGuideTab(1)"
+            style="
+              border: 1px solid var(--bd);
+              border-radius: 10px;
+              flex: none;
+              padding: 7px 14px;
+            "
+          >
+            📅 الاجتماعات
+          </button>
+          <button
+            class="tab-btn"
+            id="gtab-2"
+            onclick="switchGuideTab(2)"
+            style="
+              border: 1px solid var(--bd);
+              border-radius: 10px;
+              flex: none;
+              padding: 7px 14px;
+            "
+          >
+            ✅ المهام
+          </button>
+          <button
+            class="tab-btn"
+            id="gtab-3"
+            onclick="switchGuideTab(3)"
+            style="
+              border: 1px solid var(--bd);
+              border-radius: 10px;
+              flex: none;
+              padding: 7px 14px;
+            "
+          >
+            🔔 الإشعارات
+          </button>
+          <button
+            class="tab-btn"
+            id="gtab-4"
+            onclick="switchGuideTab(4)"
+            style="
+              border: 1px solid var(--bd);
+              border-radius: 10px;
+              flex: none;
+              padding: 7px 14px;
+            "
+          >
+            🎨 التخصيص
+          </button>
+        </div>
+        <div id="guideContent" style="min-height: 200px"></div>
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 18px;
+            gap: 10px;
+          "
+        >
+          <button
+            class="btn btn-ghost"
+            id="guidePrev"
+            onclick="guideNav(-1)"
+            style="visibility: hidden"
+          >
+            <i data-lucide="chevron-right" style="width: 15px; height: 15px"></i
+            >السابق
+          </button>
+          <div id="guideDots" style="display: flex; gap: 6px"></div>
+          <button class="btn btn-primary" id="guideNext" onclick="guideNav(1)">
+            التالي<i
+              data-lucide="chevron-left"
+              style="width: 15px; height: 15px"
+            ></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Persistent Notification Alert Modal -->
+    <div id="notifModal" class="notif-alert-overlay" style="display: none">
+      <div class="notif-alert-box">
+        <button
+          class="alert-stop-btn"
+          data-tip="إيقاف الصوت"
+          onclick="stopNotifAlertSound()"
+        >
+          <i data-lucide="volume-x" style="width: 16px; height: 16px"></i>
+        </button>
+        <span class="alert-emoji" id="notifModalEmoji">🔔</span>
+        <div class="alert-title" id="notifModalTitle">تنبيه</div>
+        <div class="alert-body" id="notifModalBody"></div>
+        <div class="alert-actions">
+          <button class="btn btn-primary" onclick="closeNotifModal()">
+            حسناً، فهمت
+          </button>
+          <button
+            class="btn btn-ghost"
             onclick="
               showSection('notifications');
               closeNotifModal();
             "
           >
-            عرض الاشعارات
-          </button>
-          <button
-            class="btn-icon notif-sound-btn"
-            data-tip="إيقاف الصوت"
-            onclick="stopNotifAlertSound()"
-          >
-            <i data-lucide="volume-x" style="width: 18px; height: 18px"></i>
+            عرض الإشعارات
           </button>
         </div>
       </div>
@@ -972,38 +955,33 @@
     <!-- Confirm Delete Modal -->
     <div
       id="confirmModal"
-      class="modal-overlay"
+      class="overlay"
       style="display: none"
       onclick="closeOnOverlay(event, 'confirmModal')"
     >
-      <div
-        class="modal-box"
-        onclick="event.stopPropagation()"
-        style="max-width: 360px; text-align: center"
-      >
-        <div style="font-size: 48px; margin-bottom: 12px">🗑️</div>
-        <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 8px">
-          حذف العنصر؟
-        </h3>
-        <p
-          style="color: var(--text-muted); font-size: 14px; margin-bottom: 24px"
-        >
+      <div class="modal confirm-modal" onclick="event.stopPropagation()">
+        <div style="font-size: 52px; margin-bottom: 12px">🗑️</div>
+        <div class="title-lg" style="margin-bottom: 8px">حذف العنصر؟</div>
+        <div style="color: var(--txt2); font-size: 14px; margin-bottom: 22px">
           لا يمكن التراجع عن هذا الإجراء.
-        </p>
+        </div>
         <div style="display: flex; gap: 10px; justify-content: center">
-          <button class="btn-ghost" onclick="closeModal('confirmModal')">
+          <button class="btn btn-ghost" onclick="closeModal('confirmModal')">
             إلغاء
           </button>
           <button
-            class="btn-primary"
-            style="background: #ef4444"
+            class="btn btn-danger"
+            style="background: #ef4444; color: #fff; border: none"
             id="confirmDeleteBtn"
           >
-            حذف
+            حذف نهائياً
           </button>
         </div>
       </div>
     </div>
+
+    <!-- Tooltip singleton -->
+    <div class="tooltip-bubble" id="tooltip"></div>
 
     <script src="app.js"></script>
   </body>
