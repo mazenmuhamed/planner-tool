@@ -1770,6 +1770,7 @@ input[type='time'].input::-moz-datetime-edit {
   }
   .content {
     padding: 20px 16px 100px;
+    margin-right: 0;
   }
   .app-body {
     height: auto;
