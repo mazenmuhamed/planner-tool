@@ -36,13 +36,10 @@
           مُخطِّطك الذكي للاجتماعات والمهام — كل حاجة في مكان واحد
         </div>
         <div class="ob-dots">
-          <span class="ob-dot"></span><span class="ob-dot"></span
-          ><span class="ob-dot"></span>
+          <span class="ob-dot"></span><span class="ob-dot"></span><span class="ob-dot"></span>
         </div>
         <div class="field" style="margin-bottom: 16px; text-align: right">
-          <label class="field-label" style="text-align: right"
-            >أولاً، ما اسمك؟ 👋</label
-          >
+          <label class="field-label" style="text-align: right">أولاً، ما اسمك؟ 👋</label>
           <input
             id="nameInput"
             class="input"
@@ -54,12 +51,7 @@
         <button
           class="btn btn-primary"
           onclick="submitName()"
-          style="
-            width: 100%;
-            justify-content: center;
-            font-size: 15px;
-            padding: 13px 20px;
-          "
+          style="width: 100%; justify-content: center; font-size: 15px; padding: 13px 20px"
         >
           <i data-lucide="sparkles" style="width: 17px; height: 17px"></i>
           هيا نبدأ!
@@ -82,11 +74,7 @@
           </div>
         </div>
         <div class="header-actions">
-          <button
-            class="header-action-btn"
-            data-tip="دليل الاستخدام"
-            onclick="openGuide()"
-          >
+          <button class="header-action-btn" data-tip="دليل الاستخدام" onclick="openGuide()">
             <i data-lucide="book-open" style="width: 17px; height: 17px"></i>
           </button>
           <button
@@ -106,11 +94,7 @@
           >
             <i data-lucide="moon" style="width: 17px; height: 17px"></i>
           </button>
-          <button
-            class="header-action-btn"
-            data-tip="الإعدادات"
-            onclick="openSettings()"
-          >
+          <button class="header-action-btn" data-tip="الإعدادات" onclick="openSettings()">
             <i data-lucide="settings" style="width: 17px; height: 17px"></i>
           </button>
         </div>
@@ -121,61 +105,26 @@
         <!-- Sidebar -->
         <aside class="sidebar">
           <div class="sidebar-section-label">القائمة</div>
-          <button
-            class="nav-item active"
-            id="nav-dashboard"
-            onclick="showSection('dashboard')"
-          >
-            <i
-              data-lucide="layout-dashboard"
-              style="width: 17px; height: 17px"
-            ></i
-            >لوحة التحكم
+          <button class="nav-item active" id="nav-dashboard" onclick="showSection('dashboard')">
+            <i data-lucide="layout-dashboard" style="width: 17px; height: 17px"></i>لوحة التحكم
           </button>
-          <button
-            class="nav-item"
-            id="nav-meetings"
-            onclick="showSection('meetings')"
-          >
-            <i data-lucide="calendar" style="width: 17px; height: 17px"></i
-            >الاجتماعات
+          <button class="nav-item" id="nav-meetings" onclick="showSection('meetings')">
+            <i data-lucide="calendar" style="width: 17px; height: 17px"></i>الاجتماعات
           </button>
-          <button
-            class="nav-item"
-            id="nav-todos"
-            onclick="showSection('todos')"
-          >
-            <i data-lucide="check-square" style="width: 17px; height: 17px"></i
-            >المهام
+          <button class="nav-item" id="nav-todos" onclick="showSection('todos')">
+            <i data-lucide="check-square" style="width: 17px; height: 17px"></i>المهام
           </button>
-          <button
-            class="nav-item"
-            id="nav-notifications"
-            onclick="showSection('notifications')"
-          >
-            <i data-lucide="bell" style="width: 17px; height: 17px"></i
-            >الإشعارات
-            <span class="nav-badge" id="navNotifBadge" style="display: none"
-              >0</span
-            >
+          <button class="nav-item" id="nav-notifications" onclick="showSection('notifications')">
+            <i data-lucide="bell" style="width: 17px; height: 17px"></i>الإشعارات
+            <span class="nav-badge" id="navNotifBadge" style="display: none">0</span>
           </button>
 
           <div style="flex: 1"></div>
           <div class="sidebar-tip">
-            <div
-              style="
-                font-size: 11px;
-                font-weight: 800;
-                color: var(--a);
-                margin-bottom: 4px;
-              "
-            >
+            <div style="font-size: 11px; font-weight: 800; color: var(--a); margin-bottom: 4px">
               💡 تلميح
             </div>
-            <div
-              style="font-size: 11.5px; color: var(--txt2); line-height: 1.5"
-              id="dailyTip"
-            >
+            <div style="font-size: 11.5px; color: var(--txt2); line-height: 1.5" id="dailyTip">
               فعّل الإشعارات لتلقّي تنبيه قبل اجتماعك بـ30 دقيقة!
             </div>
           </div>
@@ -202,9 +151,7 @@
                   <i data-lucide="bell" style="width: 18px; height: 18px"></i>
                   <span class="notif-dot" id="notifDot2"></span>
                 </button>
-                <div
-                  style="width: 1px; height: 20px; background: var(--bd)"
-                ></div>
+                <div style="width: 1px; height: 20px; background: var(--bd)"></div>
                 <button
                   class="btn-icon"
                   data-tip="تبديل الوضع"
@@ -213,15 +160,8 @@
                 >
                   <i data-lucide="moon" style="width: 18px; height: 18px"></i>
                 </button>
-                <button
-                  class="btn-icon"
-                  data-tip="الإعدادات"
-                  onclick="openSettings()"
-                >
-                  <i
-                    data-lucide="settings"
-                    style="width: 18px; height: 18px"
-                  ></i>
+                <button class="btn-icon" data-tip="الإعدادات" onclick="openSettings()">
+                  <i data-lucide="settings" style="width: 18px; height: 18px"></i>
                 </button>
               </div>
             </div>
@@ -229,20 +169,12 @@
             <!-- Stats -->
             <div class="stat-grid">
               <div class="stat-card">
-                <i
-                  data-lucide="calendar"
-                  class="stat-icon"
-                  style="width: 20px; height: 20px"
-                ></i>
+                <i data-lucide="calendar" class="stat-icon" style="width: 20px; height: 20px"></i>
                 <div class="stat-num" id="statMeetings">0</div>
                 <div class="stat-lbl">اجتماع اليوم</div>
               </div>
               <div class="stat-card">
-                <i
-                  data-lucide="circle-dot"
-                  class="stat-icon"
-                  style="width: 20px; height: 20px"
-                ></i>
+                <i data-lucide="circle-dot" class="stat-icon" style="width: 20px; height: 20px"></i>
                 <div class="stat-num" id="statTodos">0</div>
                 <div class="stat-lbl">مهام معلقة</div>
               </div>
@@ -256,11 +188,7 @@
                 <div class="stat-lbl">منجزة ✅</div>
               </div>
               <div class="stat-card">
-                <i
-                  data-lucide="bell"
-                  class="stat-icon"
-                  style="width: 20px; height: 20px"
-                ></i>
+                <i data-lucide="bell" class="stat-icon" style="width: 20px; height: 20px"></i>
                 <div class="stat-num" id="statNotifs">0</div>
                 <div class="stat-lbl">إشعارات</div>
               </div>
@@ -276,21 +204,13 @@
                   margin-bottom: 10px;
                 "
               >
-                <span style="font-size: 13.5px; font-weight: 700"
-                  >إنجاز المهام اليوم</span
-                >
-                <span
-                  id="progressPct"
-                  style="font-size: 14px; font-weight: 900; color: var(--a)"
+                <span style="font-size: 13.5px; font-weight: 700">إنجاز المهام اليوم</span>
+                <span id="progressPct" style="font-size: 14px; font-weight: 900; color: var(--a)"
                   >0%</span
                 >
               </div>
               <div class="progress-track">
-                <div
-                  class="progress-fill"
-                  id="progressFill"
-                  style="width: 0%"
-                ></div>
+                <div class="progress-fill" id="progressFill" style="width: 0%"></div>
               </div>
             </div>
 
@@ -305,9 +225,7 @@
                 justify-content: space-between;
               "
             >
-              <span style="font-size: 13px; color: var(--txt2)"
-                >التاريخ والوقت الآن</span
-              >
+              <span style="font-size: 13px; color: var(--txt2)">التاريخ والوقت الآن</span>
               <span
                 id="currentDateTime"
                 style="font-size: 13px; color: var(--a); font-weight: 600"
@@ -323,19 +241,14 @@
                 margin-bottom: 12px;
               "
             >
-              <div style="font-size: 15px; font-weight: 800">
-                ⚡ الاجتماعات القادمة
-              </div>
+              <div style="font-size: 15px; font-weight: 800">⚡ الاجتماعات القادمة</div>
               <button
                 class="btn btn-ghost"
                 style="font-size: 12px; padding: 6px 12px"
                 onclick="showSection('meetings')"
               >
                 عرض الكل
-                <i
-                  data-lucide="chevron-left"
-                  style="width: 14px; height: 14px"
-                ></i>
+                <i data-lucide="chevron-left" style="width: 14px; height: 14px"></i>
               </button>
             </div>
             <div id="dashMeetings"></div>
@@ -349,19 +262,14 @@
                 margin: 20px 0 12px;
               "
             >
-              <div style="font-size: 15px; font-weight: 800">
-                🔴 مهام عالية الأولوية
-              </div>
+              <div style="font-size: 15px; font-weight: 800">🔴 مهام عالية الأولوية</div>
               <button
                 class="btn btn-ghost"
                 style="font-size: 12px; padding: 6px 12px"
                 onclick="showSection('todos')"
               >
                 عرض الكل
-                <i
-                  data-lucide="chevron-left"
-                  style="width: 14px; height: 14px"
-                ></i>
+                <i data-lucide="chevron-left" style="width: 14px; height: 14px"></i>
               </button>
             </div>
             <div id="dashTodos"></div>
@@ -375,29 +283,14 @@
                 <div class="section-sub">سجّل وتابع كل اجتماعاتك</div>
               </div>
               <button class="btn btn-primary" onclick="openMeetingModal()">
-                <i data-lucide="plus" style="width: 16px; height: 16px"></i
-                >اجتماع جديد
+                <i data-lucide="plus" style="width: 16px; height: 16px"></i>اجتماع جديد
               </button>
             </div>
             <div class="tab-row" style="margin-bottom: 18px">
-              <button
-                class="tab-btn active"
-                onclick="filterMeetings('all', this)"
-              >
-                الكل
-              </button>
-              <button class="tab-btn" onclick="filterMeetings('today', this)">
-                اليوم
-              </button>
-              <button
-                class="tab-btn"
-                onclick="filterMeetings('upcoming', this)"
-              >
-                القادمة
-              </button>
-              <button class="tab-btn" onclick="filterMeetings('past', this)">
-                المنتهية
-              </button>
+              <button class="tab-btn active" onclick="filterMeetings('all', this)">الكل</button>
+              <button class="tab-btn" onclick="filterMeetings('today', this)">اليوم</button>
+              <button class="tab-btn" onclick="filterMeetings('upcoming', this)">القادمة</button>
+              <button class="tab-btn" onclick="filterMeetings('past', this)">المنتهية</button>
             </div>
             <div id="meetingsList"></div>
           </section>
@@ -410,23 +303,14 @@
                 <div class="section-sub">مهامك اليومية في مكان واحد</div>
               </div>
               <button class="btn btn-primary" onclick="openTodoModal()">
-                <i data-lucide="plus" style="width: 16px; height: 16px"></i>مهمة
-                جديدة
+                <i data-lucide="plus" style="width: 16px; height: 16px"></i>مهمة جديدة
               </button>
             </div>
             <div class="tab-row" style="margin-bottom: 18px">
-              <button class="tab-btn active" onclick="filterTodos('all', this)">
-                الكل
-              </button>
-              <button class="tab-btn" onclick="filterTodos('pending', this)">
-                معلقة
-              </button>
-              <button class="tab-btn" onclick="filterTodos('done', this)">
-                منجزة
-              </button>
-              <button class="tab-btn" onclick="filterTodos('high', this)">
-                عالية الأولوية
-              </button>
+              <button class="tab-btn active" onclick="filterTodos('all', this)">الكل</button>
+              <button class="tab-btn" onclick="filterTodos('pending', this)">معلقة</button>
+              <button class="tab-btn" onclick="filterTodos('done', this)">منجزة</button>
+              <button class="tab-btn" onclick="filterTodos('high', this)">عالية الأولوية</button>
             </div>
             <div id="todosList"></div>
           </section>
@@ -443,8 +327,7 @@
                 onclick="clearAllNotifs()"
                 style="color: #ef4444; border-color: rgba(239, 68, 68, 0.2)"
               >
-                <i data-lucide="trash-2" style="width: 14px; height: 14px"></i
-                >مسح الكل
+                <i data-lucide="trash-2" style="width: 14px; height: 14px"></i>مسح الكل
               </button>
             </div>
             <div id="notifList"></div>
@@ -474,10 +357,7 @@
           onclick="showSection('dashboard')"
           data-tip="الرئيسية"
         >
-          <i
-            data-lucide="layout-dashboard"
-            style="width: 20px; height: 20px"
-          ></i>
+          <i data-lucide="layout-dashboard" style="width: 20px; height: 20px"></i>
           <span>الرئيسية</span>
         </button>
         <button
@@ -489,12 +369,7 @@
           <i data-lucide="calendar" style="width: 20px; height: 20px"></i>
           <span>اجتماعات</span>
         </button>
-        <button
-          class="dock-btn"
-          id="dock-todos"
-          onclick="showSection('todos')"
-          data-tip="المهام"
-        >
+        <button class="dock-btn" id="dock-todos" onclick="showSection('todos')" data-tip="المهام">
           <i data-lucide="check-square" style="width: 20px; height: 20px"></i>
           <span>مهام</span>
         </button>
@@ -532,11 +407,7 @@
         <div style="display: flex; flex-direction: column; gap: 14px">
           <div class="field">
             <label class="field-label">عنوان الاجتماع *</label>
-            <input
-              class="input"
-              id="meetTitle"
-              placeholder="مثال: اجتماع الفريق الأسبوعي"
-            />
+            <input class="input" id="meetTitle" placeholder="مثال: اجتماع الفريق الأسبوعي" />
           </div>
           <div class="field">
             <label class="field-label">التفاصيل / جدول الأعمال</label>
@@ -549,21 +420,17 @@
           </div>
           <div class="field-row">
             <div class="field">
-              <label class="field-label">التاريخ *</label
-              ><input class="input" id="meetDate" type="date" />
+              <label class="field-label">التاريخ *</label>
+              <input class="input" id="meetDate" type="date" />
             </div>
             <div class="field">
-              <label class="field-label">الوقت *</label
-              ><input class="input" id="meetTime" type="time" />
+              <label class="field-label">الوقت *</label>
+              <input class="input" id="meetTime" type="time" />
             </div>
           </div>
           <div class="field">
             <label class="field-label">المكان / الرابط</label>
-            <input
-              class="input"
-              id="meetLocation"
-              placeholder="Zoom / Google Meet / القاعة أ"
-            />
+            <input class="input" id="meetLocation" placeholder="Zoom / Google Meet / القاعة أ" />
           </div>
           <div class="toggle-row">
             <div class="toggle-row-text">
@@ -578,9 +445,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-ghost" onclick="closeModal('meetingModal')">
-            إلغاء
-          </button>
+          <button class="btn btn-ghost" onclick="closeModal('meetingModal')">إلغاء</button>
           <button class="btn btn-primary" onclick="saveMeeting()">
             <i data-lucide="save" style="width: 15px; height: 15px"></i>حفظ
           </button>
@@ -606,11 +471,7 @@
         <div style="display: flex; flex-direction: column; gap: 14px">
           <div class="field">
             <label class="field-label">عنوان المهمة *</label>
-            <input
-              class="input"
-              id="todoTitle"
-              placeholder="ماذا تريد أن تفعل؟"
-            />
+            <input class="input" id="todoTitle" placeholder="ماذا تريد أن تفعل؟" />
           </div>
           <div class="field">
             <label class="field-label">التفاصيل</label>
@@ -648,9 +509,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-ghost" onclick="closeModal('todoModal')">
-            إلغاء
-          </button>
+          <button class="btn btn-ghost" onclick="closeModal('todoModal')">إلغاء</button>
           <button class="btn btn-primary" onclick="saveTodo()">
             <i data-lucide="save" style="width: 15px; height: 15px"></i>حفظ
           </button>
@@ -684,8 +543,7 @@
               <i data-lucide="moon" style="width: 15px; height: 15px"></i>داكن
             </button>
             <button class="theme-btn" id="btnAuto" onclick="setTheme('auto')">
-              <i data-lucide="monitor" style="width: 15px; height: 15px"></i
-              >تلقائي
+              <i data-lucide="monitor" style="width: 15px; height: 15px"></i>تلقائي
             </button>
           </div>
         </div>
@@ -747,11 +605,7 @@
               <div class="t-row-title">إشعارات المتصفح</div>
               <div class="t-row-sub">Push notifications في الخلفية</div>
             </div>
-            <button
-              class="toggle"
-              id="browserNotifToggle"
-              onclick="toggleBrowserNotifs()"
-            ></button>
+            <button class="toggle" id="browserNotifToggle" onclick="toggleBrowserNotifs()"></button>
           </div>
           <div style="margin-top: 10px">
             <div class="toggle-row">
@@ -765,13 +619,9 @@
                 onclick="toggleTestNotifButton()"
               ></button>
             </div>
-            <div
-              id="testNotifRow"
-              style="margin-top: 10px; display: none; justify-content: center"
-            >
+            <div id="testNotifRow" style="margin-top: 10px; display: none; justify-content: center">
               <button class="btn btn-primary" onclick="testNotification()">
-                <i data-lucide="bell" style="width: 15px; height: 15px"></i
-                >تجربة التنبيه الآن
+                <i data-lucide="bell" style="width: 15px; height: 15px"></i>تجربة التنبيه الآن
               </button>
             </div>
           </div>
@@ -785,8 +635,7 @@
             onclick="resetApp()"
             style="width: 100%; justify-content: center"
           >
-            <i data-lucide="rotate-ccw" style="width: 14px; height: 14px"></i
-            >إعادة ضبط التطبيق
+            <i data-lucide="rotate-ccw" style="width: 14px; height: 14px"></i>إعادة ضبط التطبيق
           </button>
         </div>
       </div>
@@ -799,11 +648,7 @@
       style="display: none"
       onclick="closeOnOverlay(event, 'guideModal')"
     >
-      <div
-        class="modal"
-        onclick="event.stopPropagation()"
-        style="width: min(560px, 95vw)"
-      >
+      <div class="modal" onclick="event.stopPropagation()" style="width: min(560px, 95vw)">
         <div class="modal-header">
           <div class="modal-title">📖 دليل الاستخدام</div>
           <button class="btn-icon" onclick="closeModal('guideModal')">
@@ -824,12 +669,7 @@
             class="tab-btn active"
             id="gtab-0"
             onclick="switchGuideTab(0)"
-            style="
-              border: 1px solid var(--bd);
-              border-radius: 10px;
-              flex: none;
-              padding: 7px 14px;
-            "
+            style="border: 1px solid var(--bd); border-radius: 10px; flex: none; padding: 7px 14px"
           >
             🏠 البداية
           </button>
@@ -837,12 +677,7 @@
             class="tab-btn"
             id="gtab-1"
             onclick="switchGuideTab(1)"
-            style="
-              border: 1px solid var(--bd);
-              border-radius: 10px;
-              flex: none;
-              padding: 7px 14px;
-            "
+            style="border: 1px solid var(--bd); border-radius: 10px; flex: none; padding: 7px 14px"
           >
             📅 الاجتماعات
           </button>
@@ -850,12 +685,7 @@
             class="tab-btn"
             id="gtab-2"
             onclick="switchGuideTab(2)"
-            style="
-              border: 1px solid var(--bd);
-              border-radius: 10px;
-              flex: none;
-              padding: 7px 14px;
-            "
+            style="border: 1px solid var(--bd); border-radius: 10px; flex: none; padding: 7px 14px"
           >
             ✅ المهام
           </button>
@@ -863,12 +693,7 @@
             class="tab-btn"
             id="gtab-3"
             onclick="switchGuideTab(3)"
-            style="
-              border: 1px solid var(--bd);
-              border-radius: 10px;
-              flex: none;
-              padding: 7px 14px;
-            "
+            style="border: 1px solid var(--bd); border-radius: 10px; flex: none; padding: 7px 14px"
           >
             🔔 الإشعارات
           </button>
@@ -876,12 +701,7 @@
             class="tab-btn"
             id="gtab-4"
             onclick="switchGuideTab(4)"
-            style="
-              border: 1px solid var(--bd);
-              border-radius: 10px;
-              flex: none;
-              padding: 7px 14px;
-            "
+            style="border: 1px solid var(--bd); border-radius: 10px; flex: none; padding: 7px 14px"
           >
             🎨 التخصيص
           </button>
@@ -902,15 +722,11 @@
             onclick="guideNav(-1)"
             style="visibility: hidden"
           >
-            <i data-lucide="chevron-right" style="width: 15px; height: 15px"></i
-            >السابق
+            <i data-lucide="chevron-right" style="width: 15px; height: 15px"></i>السابق
           </button>
           <div id="guideDots" style="display: flex; gap: 6px"></div>
           <button class="btn btn-primary" id="guideNext" onclick="guideNav(1)">
-            التالي<i
-              data-lucide="chevron-left"
-              style="width: 15px; height: 15px"
-            ></i>
+            التالي<i data-lucide="chevron-left" style="width: 15px; height: 15px"></i>
           </button>
         </div>
       </div>
@@ -919,25 +735,19 @@
     <!-- Persistent Notification Alert Modal -->
     <div id="notifModal" class="notif-alert-overlay" style="display: none">
       <div class="notif-alert-box">
-        <button
-          class="alert-stop-btn"
-          data-tip="إيقاف الصوت"
-          onclick="stopNotifAlertSound()"
-        >
+        <button class="alert-stop-btn" data-tip="إيقاف الصوت" onclick="stopNotifAlertSound()">
           <i data-lucide="volume-x" style="width: 16px; height: 16px"></i>
         </button>
         <span class="alert-emoji" id="notifModalEmoji">🔔</span>
         <div class="alert-title" id="notifModalTitle">تنبيه</div>
         <div class="alert-body" id="notifModalBody"></div>
         <div class="alert-actions">
-          <button class="btn btn-primary" onclick="closeNotifModal()">
-            حسناً، فهمت
-          </button>
+          <button class="btn btn-primary" onclick="closeNotifModal()">حسناً، فهمت</button>
           <button
             class="btn btn-ghost"
             onclick="
-              showSection('notifications');
-              closeNotifModal();
+              showSection('notifications')
+              closeNotifModal()
             "
           >
             عرض الإشعارات
@@ -960,9 +770,7 @@
           لا يمكن التراجع عن هذا الإجراء.
         </div>
         <div style="display: flex; gap: 10px; justify-content: center">
-          <button class="btn btn-ghost" onclick="closeModal('confirmModal')">
-            إلغاء
-          </button>
+          <button class="btn btn-ghost" onclick="closeModal('confirmModal')">إلغاء</button>
           <button
             class="btn btn-danger"
             style="background: #ef4444; color: #fff; border: none"

@@ -11,9 +11,9 @@
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.7.0",
+    "globals": "^17.7.0",
     "tailwindcss": "^4.2.4"
-  },
-  "dependencies": {
-    "lucide": "^1.11.0"
   }
 }
